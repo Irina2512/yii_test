@@ -20,7 +20,7 @@ class ToExcelAction extends Action
             ];
         }
         $columns = [];
-        if(!empty($allModels)) {
+        if(! empty($allModels)) {
             $columns = [
                 [
                     'attribute' => 'name',
@@ -38,7 +38,6 @@ class ToExcelAction extends Action
             ),
             'columns' => $columns
         ]);
-        //$exporter->send('itemincatalog_'.$group.'.xls');
         $exporter->save(__DIR__.'/../data/itemincatalog_'.$group.'.xls');
     }
 }
