@@ -18,8 +18,8 @@ $js = <<<JS
             success: function() {
                 alert('Товары сохранены в каталоге data');
             },
-            error: function() {
-                alert('Ошибка');
+            error: function(err) {
+                alert('Ошибка: '+err.responseText);
             }
         }); 
     });
