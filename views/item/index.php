@@ -1,13 +1,29 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 ?>
 <h1>Товары по категории</h1>
-<?$form = ActiveForm::begin(['action'=>'index.php?r=item%2Fshow','method'=>'get'])?>
 <label>Введите ID категории</label>
 <br>
-<input type="text" value="" name="group">
+<?= Html::input('text','group',null,['id'=>'group'])?>
 <div class="form-group">
-    <?= Html::submitButton('Получить товары', ['class' => 'btn btn-primary']) ?>
+    <?= Html::button('Получить товары',['class' => 'btn btn-primary','id' => 'to-excel-button']) ?>
 </div>
-<?php ActiveForm::end() ?>
+<?php
+$js = <<<JS
+    $('#to-excel-button').click(function() {
+        $.ajax({
+            url: 'index.php?r=item%2Fshow',
+            data: {group: $('#group').val()},
+            type: 'GET',
+            success: function() {
+                alert('Товары сохранены в каталоге data');
+            },
+            error: function() {
+                alert('Ошибка');
+            }
+        }); 
+    });
+JS;
+$this->registerJS($js);
+
+
